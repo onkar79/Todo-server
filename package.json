@@ -4,8 +4,8 @@
   "description": "",
   "main": "sec/index.js",
   "scripts": {
-    "build": "rimraf ./build && npx tsc",
-    "start": " npm run build && node build/app.js",
+    "build": "rimraf ./dist && npx tsc",
+    "start": " npm run build && node dist/app.js",
     "start:dev": "npx nodemon"
   },
   "author": "",
