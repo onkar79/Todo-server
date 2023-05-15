@@ -4,8 +4,8 @@
   "description": "",
   "main": "sec/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.js",
+    "build": "rimraf ./build && npx tsc",
+    "start": " npm run build && node build/app.js",
     "start:dev": "npx nodemon"
   },
   "author": "",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/node": "^20.1.4",
+    "rimraf": "^5.0.0",
     "typescript": "^5.0.4"
   }
 }
