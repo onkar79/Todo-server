@@ -7,8 +7,8 @@ let addTodo = async (req: Request, res: Response): Promise<void> => {
   try {
     const todo = new Todo(req.body);
     const newTodo: ITodo = await todo.save();
-    const allTodos: ITodo[] = await Todo.find();
-    res.send({ message: "Todo added", todo: newTodo, todos: allTodos });
+    const todos: ITodo[] = await Todo.find();
+    res.send(todos);
   } catch (error) {
     throw error;
   }
@@ -17,7 +17,7 @@ let addTodo = async (req: Request, res: Response): Promise<void> => {
 let getTodos = async (req: Request, res: Response): Promise<void> => {
   try {
     const todos: ITodo[] = await Todo.find();
-    res.status(200).json({ todos });
+    res.status(200).json( todos );
   } catch (error) {
     throw error;
   }
@@ -25,10 +25,11 @@ let getTodos = async (req: Request, res: Response): Promise<void> => {
 
 let updateTodo = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { id, text } = req.body;
-    Todo.findOneAndUpdate({ id: id }, { text: text }).then(() => {
-      const allTodos: ITodo[] = Todo.find();
-      res.send({ message: "Updated Successfully.", todos: allTodos });
+    const { id, text ,date,completed} = req.body;
+    console.log(id,text)
+   await Todo.findOneAndUpdate({ id: id }, { text: text, date:date, completed:completed}).then( async () => {
+      const todos: ITodo[] = await Todo.find();
+      res.send( todos );
     });
   } catch (error) {
     res.send(error);
@@ -37,10 +38,9 @@ let updateTodo = async (req: Request, res: Response): Promise<void> => {
 let deleteTodo = async (req: Request, res: Response) => {
   try {
     const { id } = req.body;
-    console.log(id);
-    Todo.findOneAndDelete({ id: id }).then(() =>{
-    const allTodos: ITodo[] = Todo.find();
-    res.send({ message: "Deleted Successfully.", todos: allTodos });
+  await  Todo.findOneAndDelete({ id: id }).then( async() =>{
+    const todos: ITodo[] =await Todo.find();
+    res.send(todos);
   });
   } catch (error) {
     res.send(error);

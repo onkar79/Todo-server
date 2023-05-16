@@ -5,7 +5,7 @@ const routes  = require('./routes/todoRoute');
 const cors = require("cors")
 const app = express()
 
-const PORT:number= 9000
+let PORT:number= 9000
 const dbURL:string= `mongodb+srv://onkar79:A29b08c95%23@cluster0.wu9uxbw.mongodb.net/test`
 
  app.listen(PORT,()=>{
