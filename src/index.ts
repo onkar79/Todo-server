@@ -7,7 +7,7 @@ const app = express()
 
 const PORT = process.env.PORT || 9000;
 
-const dbURL:string= `mongodb+srv://onkar79:A29b08c95%23@cluster0.wu9uxbw.mongodb.net/test`
+const dbURL= `mongodb+srv://onkar79:A29b08c95%23@cluster0.wu9uxbw.mongodb.net/test`
 
  app.listen(PORT,()=>{
   console.log('Listening to 9000')
